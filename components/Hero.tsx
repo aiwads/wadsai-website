@@ -109,10 +109,10 @@ export default function Hero() {
               rotate: p.rotate,
               pointerEvents: 'none',
               zIndex: 0,
-              mixBlendMode: 'multiply',
+              background: 'transparent',
             }}
           >
-            <img src="/paper-plane.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            <img src="/paper-plane.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }} />
           </motion.div>
         );
       })}
