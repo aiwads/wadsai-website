@@ -30,6 +30,10 @@ const undefinedMedium = localFont({
 export const metadata: Metadata = {
   title: 'Wads AI — AI Voice Agents for Small Business',
   description: 'Your AI agent answers every call, sounds human, books appointments, and captures leads 24/7. Never miss a call again.',
+  metadataBase: new URL('https://wads.ai'),
+  alternates: {
+    canonical: 'https://wads.ai',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

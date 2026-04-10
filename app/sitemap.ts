@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
 
   const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `https://wadsai.com/blog/${post.slug}`,
+    url: `https://wads.ai/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'monthly',
     priority: 0.7,
@@ -13,13 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: 'https://wadsai.com',
+      url: 'https://wads.ai',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: 'https://wadsai.com/blog',
+      url: 'https://wads.ai/blog',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,

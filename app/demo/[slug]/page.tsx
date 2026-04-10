@@ -251,7 +251,7 @@ export default async function DemoPage({ params }: { params: Promise<{ slug: str
           </div>
           {config.poweredBy && (
             <a
-              href="https://wadsai.com"
+              href="https://wads.ai"
               style={{ fontSize: 12, color: '#9ca3af', textDecoration: 'none' }}
             >
               Site by Wads AI

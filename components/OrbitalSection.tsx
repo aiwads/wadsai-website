@@ -55,6 +55,15 @@ export default function OrbitalSection() {
           from { transform: translate(-50%, -50%) rotate(0deg); }
           to   { transform: translate(-50%, -50%) rotate(360deg); }
         }
+        @media (max-width: 767px) {
+          .orbital-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+          }
+        }
       `}</style>
 
       <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '0 24px' }}>
@@ -89,6 +98,7 @@ export default function OrbitalSection() {
         </motion.div>
 
         {/* Orbital */}
+        <div className="orbital-wrapper">
         <motion.div
           {...fadeUp(0.2)}
           style={{
@@ -96,6 +106,7 @@ export default function OrbitalSection() {
             width: CONTAINER,
             height: CONTAINER,
             margin: '0 auto',
+            flexShrink: 0,
           }}
         >
           {/* Outer guide ring */}
@@ -198,6 +209,7 @@ export default function OrbitalSection() {
             );
           })}
         </motion.div>
+        </div>
 
       </div>
     </section>
