@@ -110,7 +110,7 @@ export default function Services() {
           .services-grid { grid-template-columns: 1fr !important; }
           .services-col { padding: 40px 24px 32px !important; border-right: none !important; }
           .services-col:not(:last-child) { border-bottom: 1px solid rgba(26,26,22,0.10); }
-          .services-split-bg { background: #EDEAE3 !important; }
+          .services-split-bg { background: #E0DDD6 !important; }
         }
         .svc-phone-clip  { position: relative; width: 100%; height: 245px; overflow: hidden; }
         .svc-phone-inner { position: relative; width: 700px; height: 1443px; margin: 0 auto; transform-origin: top center; }
