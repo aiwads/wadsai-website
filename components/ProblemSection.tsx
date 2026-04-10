@@ -40,7 +40,7 @@ export default function ProblemSection() {
             background: 'rgba(26,26,22,0.07)', border: '1px solid rgba(26,26,22,0.15)',
             fontFamily: 'var(--font-inter)', fontSize: '0.72rem', fontWeight: 700,
             letterSpacing: '0.16em', textTransform: 'uppercase', color: '#6A6A62',
-            marginBottom: '20px', display: 'inline-block',
+            marginBottom: '20px',
           }}>
             The Real Cost of Missing Calls
           </span>

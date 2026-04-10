@@ -21,8 +21,8 @@ const inter = Inter({
 
 const undefinedMedium = localFont({
   src: [
-    { path: '../public/fonts/undefined-medium.woff2', format: 'woff2' },
-    { path: '../public/fonts/undefined-medium.woff', format: 'woff' },
+    { path: '../public/fonts/undefined-medium.woff2' },
+    { path: '../public/fonts/undefined-medium.woff' },
   ],
   variable: '--font-undefined',
 });
