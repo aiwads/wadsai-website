@@ -30,7 +30,7 @@ function WadsLogoIcon({ size = 18, color = '#fff' }: { size?: number; color?: st
 
 export default function Hero() {
   return (
-    <section className="hero-section" style={{
+    <section style={{
       background: 'radial-gradient(ellipse at 50% 30%, rgba(26,26,22,0.06) 0%, transparent 60%), #E4E4DE',
       minHeight: '100vh',
       paddingTop: '160px',
@@ -44,7 +44,6 @@ export default function Hero() {
     }}>
 
       {/* Paper plane spray — animated diagonal rain */}
-      <div className="hero-paper-planes" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}>
       {[
         // top-left
         { left:  780, topOffset: -200, rotate: 50, size: 56, opacity: 0.21 },
@@ -86,10 +85,8 @@ export default function Hero() {
         const travel   = 80 + ((i * 7) % 41);          // 80–120px
 
         return (
-          <motion.img
+          <motion.div
             key={i}
-            src="/paper-plane.png"
-            alt=""
             initial={{ x: 0, y: 0, opacity: 0 }}
             animate={{
               x: [0, travel],
@@ -109,16 +106,15 @@ export default function Hero() {
               width: `clamp(${Math.round(p.size * 0.5)}px, ${(p.size / 16).toFixed(2)}vw, ${p.size}px)`,
               height: `clamp(${Math.round(p.size * 0.5)}px, ${(p.size / 16).toFixed(2)}vw, ${p.size}px)`,
               rotate: p.rotate,
-              objectFit: 'contain',
               pointerEvents: 'none',
               zIndex: 0,
               mixBlendMode: 'multiply',
             }}
-          />
+          >
+            <img src="/paper-plane.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </motion.div>
         );
       })}
-
-      </div>
 
       {/* Hand — left side background */}
       <div className="hero-hand" style={{
@@ -184,7 +180,7 @@ export default function Hero() {
         </motion.p>
 
         {/* Buttons */}
-        <motion.div {...fadeUp(0.3)} className="hero-buttons" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center', marginBottom: '48px' }}>
+        <motion.div {...fadeUp(0.3)} style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center', marginBottom: '48px' }}>
           <CallButton
             defaultText="Call the AI Now"
             phoneSize={15}
@@ -240,14 +236,6 @@ export default function Hero() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
-          .hero-section { padding-top: 100px !important; padding-bottom: 60px !important; }
-          .hero-paper-planes { display: none !important; }
-          .hero-hand { opacity: 0.15 !important; width: clamp(140px, 60vw, 280px) !important; height: clamp(140px, 60vw, 280px) !important; }
-          .hero-stats { grid-template-columns: 1fr !important; }
-          .hero-buttons { flex-direction: column !important; align-items: stretch !important; }
-          .hero-buttons a, .hero-buttons button { width: 100% !important; justify-content: center !important; }
-        }
         @media (max-width: 600px) {
           .hero-stats { grid-template-columns: 1fr !important; }
           .hero-hand { top: 50% !important; transform: translateY(-50%) !important; }

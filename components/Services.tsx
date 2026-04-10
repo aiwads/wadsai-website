@@ -108,37 +108,26 @@ export default function Services() {
       <style>{`
         @media (max-width: 768px) {
           .services-grid { grid-template-columns: 1fr !important; }
-          .services-col { padding: 32px 20px 28px !important; border-right: none !important; }
+          .services-col { padding: 40px 24px 32px !important; border-right: none !important; }
           .services-col:not(:last-child) { border-bottom: 1px solid rgba(26,26,22,0.10); }
-          .services-split-bg { background: #EDEAE3 !important; }
-          .services-header { padding: 48px 20px 40px !important; }
         }
         .svc-phone-clip  { position: relative; width: 100%; height: 245px; overflow: hidden; }
         .svc-phone-inner { position: relative; width: 700px; height: 1443px; margin: 0 auto; transform-origin: top center; }
-        @media (max-width: 768px) {
-          .svc-phone-wrapper { overflow: hidden !important; }
-          .svc-phone-clip {
-            width: clamp(280px, 80vw, 500px) !important;
-            max-width: 100% !important;
-            margin: 0 auto !important;
-            overflow: hidden !important;
-            height: 180px !important;
-          }
-          .svc-phone-inner {
-            position: absolute !important;
-            left: 50% !important;
-            margin: 0 !important;
-            transform: translateX(-350px) scale(0.55) !important;
-            transform-origin: top center !important;
-          }
+        @media (max-width: 720px) {
+          .svc-phone-clip  { height: 206px; }
+          .svc-phone-inner { transform: scale(0.84); }
+        }
+        @media (max-width: 600px) {
+          .svc-phone-clip  { height: 172px; }
+          .svc-phone-inner { transform: scale(0.70); }
         }
         @media (max-width: 480px) {
-          .svc-phone-clip  { height: 155px !important; }
-          .svc-phone-inner { transform: translateX(-350px) scale(0.48) !important; }
+          .svc-phone-clip  { height: 152px; }
+          .svc-phone-inner { transform: scale(0.62); }
         }
-        @media (max-width: 390px) {
-          .svc-phone-clip  { height: 140px !important; }
-          .svc-phone-inner { transform: translateX(-350px) scale(0.43) !important; }
+        @media (max-width: 400px) {
+          .svc-phone-clip  { height: 133px; }
+          .svc-phone-inner { transform: scale(0.54); }
         }
         @keyframes glowPulse {
           0%, 100% {
@@ -155,7 +144,6 @@ export default function Services() {
       {/* Centered header */}
       <motion.div
         {...fadeUp(0)}
-        className="services-header"
         style={{ textAlign: 'center', padding: '72px 24px 56px' }}
       >
         <h2 style={{
@@ -174,7 +162,7 @@ export default function Services() {
       </motion.div>
 
       {/* Two-column grid + iPhone — wrapped so split background extends through phone area */}
-      <div className="services-split-bg" style={{ background: 'linear-gradient(to right, #EDEAE3 50%, #E0DDD6 50%)', overflow: 'hidden' }}>
+      <div style={{ background: 'linear-gradient(to right, #EDEAE3 50%, #E0DDD6 50%)' }}>
       <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
 
         {/* ── Inbound — lighter ── */}
@@ -256,7 +244,6 @@ export default function Services() {
 
       {/* iPhone peek */}
       <motion.div
-        className="svc-phone-wrapper"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
