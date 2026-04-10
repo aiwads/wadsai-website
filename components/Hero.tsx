@@ -86,8 +86,10 @@ export default function Hero() {
         const travel   = 80 + ((i * 7) % 41);          // 80–120px
 
         return (
-          <motion.div
+          <motion.img
             key={i}
+            src="/paper-plane.png"
+            alt=""
             initial={{ x: 0, y: 0, opacity: 0 }}
             animate={{
               x: [0, travel],
@@ -107,13 +109,12 @@ export default function Hero() {
               width: `clamp(${Math.round(p.size * 0.5)}px, ${(p.size / 16).toFixed(2)}vw, ${p.size}px)`,
               height: `clamp(${Math.round(p.size * 0.5)}px, ${(p.size / 16).toFixed(2)}vw, ${p.size}px)`,
               rotate: p.rotate,
+              objectFit: 'contain',
               pointerEvents: 'none',
               zIndex: 0,
-              background: 'transparent',
+              mixBlendMode: 'multiply',
             }}
-          >
-            <img src="/paper-plane.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'multiply' }} />
-          </motion.div>
+          />
         );
       })}
 
