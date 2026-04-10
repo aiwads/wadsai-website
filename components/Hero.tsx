@@ -131,7 +131,7 @@ export default function Hero() {
       }}>
         <img
           src="/pointing-hand.png"
-          alt=""
+          alt="AI voice agent for small businesses"
           style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'contrast(1.2) saturate(1.1)' }}
         />
       </div>

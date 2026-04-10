@@ -28,8 +28,8 @@ const undefinedMedium = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Wads AI — AI Voice Agents for Small Business',
-  description: 'Your AI agent answers every call, sounds human, books appointments, and captures leads 24/7. Never miss a call again.',
+  title: 'Wads AI — AI Voice Agents for Small Businesses',
+  description: 'Wads AI builds custom AI voice agents for small businesses. Answer every call, follow up with every lead, and request reviews automatically. Live in 1 week.',
   metadataBase: new URL('https://wads.ai'),
   alternates: {
     canonical: 'https://wads.ai',
