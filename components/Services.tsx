@@ -104,13 +104,14 @@ function Card({
 /* ── Section ── */
 export default function Services() {
   return (
-    <section id="services" style={{ background: '#E4E4DE', marginTop: '-40px', paddingTop: '0', overflowX: 'hidden' }}>
+    <section id="services" style={{ background: '#E4E4DE', marginTop: '-40px', paddingTop: '0', overflowX: 'hidden', touchAction: 'pan-y' }}>
       <style>{`
         @media (max-width: 768px) {
           .services-grid { grid-template-columns: 1fr !important; width: 100% !important; max-width: 100vw !important; }
-          .services-col { padding: 40px 24px 32px !important; border-right: none !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; }
+          .services-col { padding: 40px 24px 32px !important; border-right: none !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; touch-action: pan-y !important; overflow: visible !important; }
           .services-col:not(:last-child) { border-bottom: 1px solid rgba(26,26,22,0.10); }
-          .services-split-bg { background: #E0DDD6 !important; width: 100% !important; max-width: 100vw !important; overflow-x: hidden !important; }
+          .services-split-bg { background: #E0DDD6 !important; width: 100% !important; max-width: 100vw !important; overflow-x: hidden !important; touch-action: pan-y !important; }
+          .svc-phone-clip { touch-action: pan-y !important; }
         }
         .svc-phone-clip  { position: relative; width: 100%; height: 245px; overflow: hidden; }
         .svc-phone-inner { position: relative; width: 700px; height: 1443px; margin: 0 auto; transform-origin: top center; }
