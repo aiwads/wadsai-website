@@ -110,6 +110,7 @@ export default function Services() {
           .services-grid { grid-template-columns: 1fr !important; }
           .services-col { padding: 40px 24px 32px !important; border-right: none !important; }
           .services-col:not(:last-child) { border-bottom: 1px solid rgba(26,26,22,0.10); }
+          .services-split-bg { background: #EDEAE3 !important; }
         }
         .svc-phone-clip  { position: relative; width: 100%; height: 245px; overflow: hidden; }
         .svc-phone-inner { position: relative; width: 700px; height: 1443px; margin: 0 auto; transform-origin: top center; }
@@ -168,7 +169,7 @@ export default function Services() {
       </motion.div>
 
       {/* Two-column grid + iPhone — wrapped so split background extends through phone area */}
-      <div style={{ background: 'linear-gradient(to right, #EDEAE3 50%, #E0DDD6 50%)' }}>
+      <div className="services-split-bg" style={{ background: 'linear-gradient(to right, #EDEAE3 50%, #E0DDD6 50%)' }}>
       <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
 
         {/* ── Inbound — lighter ── */}
