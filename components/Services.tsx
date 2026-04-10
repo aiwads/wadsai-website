@@ -115,21 +115,30 @@ export default function Services() {
         }
         .svc-phone-clip  { position: relative; width: 100%; height: 245px; overflow: hidden; }
         .svc-phone-inner { position: relative; width: 700px; height: 1443px; margin: 0 auto; transform-origin: top center; }
-        @media (max-width: 720px) {
-          .svc-phone-clip  { height: 206px; overflow: hidden; }
-          .svc-phone-inner { transform: scale(0.84); }
-        }
-        @media (max-width: 600px) {
-          .svc-phone-clip  { height: 172px; overflow: hidden; }
-          .svc-phone-inner { transform: scale(0.70); }
+        @media (max-width: 768px) {
+          .svc-phone-wrapper { overflow: hidden !important; }
+          .svc-phone-clip {
+            width: clamp(280px, 80vw, 500px) !important;
+            max-width: 100% !important;
+            margin: 0 auto !important;
+            overflow: hidden !important;
+            height: 180px !important;
+          }
+          .svc-phone-inner {
+            position: absolute !important;
+            left: 50% !important;
+            margin: 0 !important;
+            transform: translateX(-350px) scale(0.55) !important;
+            transform-origin: top center !important;
+          }
         }
         @media (max-width: 480px) {
-          .svc-phone-clip  { height: 152px; overflow: hidden; }
-          .svc-phone-inner { transform: scale(0.62); }
+          .svc-phone-clip  { height: 155px !important; }
+          .svc-phone-inner { transform: translateX(-350px) scale(0.48) !important; }
         }
-        @media (max-width: 400px) {
-          .svc-phone-clip  { height: 133px; overflow: hidden; }
-          .svc-phone-inner { transform: scale(0.54); }
+        @media (max-width: 390px) {
+          .svc-phone-clip  { height: 140px !important; }
+          .svc-phone-inner { transform: translateX(-350px) scale(0.43) !important; }
         }
         @keyframes glowPulse {
           0%, 100% {
@@ -247,6 +256,7 @@ export default function Services() {
 
       {/* iPhone peek */}
       <motion.div
+        className="svc-phone-wrapper"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
