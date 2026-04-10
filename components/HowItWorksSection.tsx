@@ -39,6 +39,8 @@ export default function HowItWorksSection() {
         @media (max-width: 768px) {
           .hiw-grid { grid-template-columns: 1fr !important; }
           .hiw-arrow { display: none !important; }
+          .hiw-inner { padding: 0 20px !important; }
+          .hiw-cta a { width: 100% !important; justify-content: center !important; }
         }
         @keyframes arrowPulse {
           0%, 100% { opacity: 0.4; }
@@ -53,7 +55,7 @@ export default function HowItWorksSection() {
         backgroundRepeat: 'repeat',
       }} />
 
-      <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
+      <div className="hiw-inner" style={{ maxWidth: '72rem', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
 
         {/* Header */}
         <motion.div {...fadeUp(0)} style={{ textAlign: 'center', marginBottom: '64px', paddingTop: '40px' }}>
