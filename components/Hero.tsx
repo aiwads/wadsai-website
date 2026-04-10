@@ -5,8 +5,8 @@ import CallButton from './CallButton';
 
 const stats = [
   { value: '62%', label: 'of callers won\'t leave a voicemail' },
-  { value: '78%', label: 'of customers go with whoever responds first' },
   { value: '24/7', label: 'your AI never misses a lead' },
+  { value: '78%', label: 'of customers go with whoever responds first' },
 ];
 
 const fadeUp = (delay = 0) => ({
