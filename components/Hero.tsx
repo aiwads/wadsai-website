@@ -241,6 +241,7 @@ export default function Hero() {
       <style>{`
         @media (max-width: 768px) {
           .hero-section { padding-top: 100px !important; padding-bottom: 60px !important; }
+          .hero-paper-planes { display: none !important; }
           .hero-hand { opacity: 0.15 !important; width: clamp(140px, 60vw, 280px) !important; height: clamp(140px, 60vw, 280px) !important; }
           .hero-stats { grid-template-columns: 1fr !important; }
           .hero-buttons { flex-direction: column !important; align-items: stretch !important; }
