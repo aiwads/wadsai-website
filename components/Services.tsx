@@ -115,19 +115,25 @@ export default function Services() {
         .svc-phone-inner { position: relative; width: 700px; height: 1443px; margin: 0 auto; transform-origin: top center; }
         @media (max-width: 720px) {
           .svc-phone-clip  { height: 206px; }
-          .svc-phone-inner { transform: scale(0.84); }
+          .svc-phone-inner {
+            position: absolute;
+            left: 50%;
+            margin: 0;
+            transform: translateX(-350px) scale(0.84);
+            transform-origin: top center;
+          }
         }
         @media (max-width: 600px) {
           .svc-phone-clip  { height: 172px; }
-          .svc-phone-inner { transform: scale(0.70); }
+          .svc-phone-inner { transform: translateX(-350px) scale(0.70); }
         }
         @media (max-width: 480px) {
           .svc-phone-clip  { height: 152px; }
-          .svc-phone-inner { transform: scale(0.62); }
+          .svc-phone-inner { transform: translateX(-350px) scale(0.62); }
         }
         @media (max-width: 400px) {
           .svc-phone-clip  { height: 133px; }
-          .svc-phone-inner { transform: scale(0.54); }
+          .svc-phone-inner { transform: translateX(-350px) scale(0.54); }
         }
         @keyframes glowPulse {
           0%, 100% {
