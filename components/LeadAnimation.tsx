@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 
 const steps = [
-  { id: 1, icon: '📞', label: 'INCOMING CALL', sub: '9:47 PM — Phoenix, AZ', color: 'text-yellow-400', border: 'border-yellow-900/50', bg: 'bg-yellow-950/20' },
+  { id: 1, icon: '📞', label: 'INCOMING CALL', sub: '9:47 PM · Phoenix, AZ', color: 'text-yellow-400', border: 'border-yellow-900/50', bg: 'bg-yellow-950/20' },
   { id: 2, icon: '🤖', label: 'AI ANSWERED', sub: 'Qualifying lead now...', color: 'text-violet-400', border: 'border-violet-900/50', bg: 'bg-violet-950/20' },
-  { id: 3, icon: '✓', label: 'LEAD CAPTURED', sub: 'Sarah M. — Buyer, 3BR, $450K', color: 'text-green-400', border: 'border-green-900/50', bg: 'bg-green-950/20' },
+  { id: 3, icon: '✓', label: 'LEAD CAPTURED', sub: 'Sarah M. · Buyer, 3BR, $450K', color: 'text-green-400', border: 'border-green-900/50', bg: 'bg-green-950/20' },
   { id: 4, icon: '⚡', label: 'SENT TO YOU', sub: 'Instant summary delivered', color: 'text-blue-400', border: 'border-blue-900/50', bg: 'bg-blue-950/20' },
 ];
 

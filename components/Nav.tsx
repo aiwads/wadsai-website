@@ -2,88 +2,79 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { startWebCall, isMobileDevice } from './CallButton';
+import { openContactModal } from './ContactModal';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50"
-      style={{
-        background: 'rgba(255, 255, 255, 0.92)',
-        backdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(181, 198, 224, 0.5)',
-      }}
-    >
-      <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50" style={{
+      background: 'rgba(228,228,222,0.92)',
+      backdropFilter: 'blur(20px)',
+      borderBottom: '1px solid rgba(26,26,22,0.08)',
+    }}>
+      <div className="w-full h-16 flex items-center justify-between" style={{ paddingLeft: 'clamp(24px, 5vw, 80px)', paddingRight: 'clamp(24px, 5vw, 80px)' }}>
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span style={{ fontFamily: 'var(--font-syne)', fontWeight: 800, fontSize: '1.15rem', color: '#2d2d2d', letterSpacing: '-0.01em' }}>
-            WADS<span style={{ color: '#103783' }}>AI</span>
-          </span>
+        {/* Logo — far left */}
+        <Link href="/" style={{ fontFamily: 'var(--font-jakarta)', fontWeight: 800, fontSize: '1.1rem', color: '#1A1A16' }}>
+          Wads<span style={{ color: '#6A6A62' }}>AI</span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {[['Home', '/'], ['Services', '/services'], ['Blog', '/blog'], ['Contact', '/contact']].map(([label, href]) => (
-            <Link
-              key={label}
-              href={href}
-              className="transition-colors hover:text-[#103783]"
-              style={{ fontFamily: 'var(--font-space-grotesk)', fontSize: '0.9rem', color: 'rgba(45,45,45,0.6)', fontWeight: 500 }}
-            >
-              {label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="transition-all hover:border-[#103783] hover:text-[#103783]"
-            style={{
-              fontFamily: 'var(--font-space-grotesk)',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: '#2d2d2d',
-              padding: '9px 24px',
-              borderRadius: '100px',
-              border: '1.5px solid rgba(45,45,45,0.3)',
-            }}
-          >
-            Book Free Demo
-          </Link>
+        {/* Nav links + CTA — grouped together, far right */}
+        <div className="flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8">
+            {[['Services', '/#services'], ['How It Works', '/#how-it-works'], ['Blog', '/blog']].map(([label, href]) => (
+              <a key={label} href={href} style={{ fontFamily: 'var(--font-inter)', fontSize: '0.9rem', color: 'rgba(26,26,22,0.55)', fontWeight: 500 }}
+                className="hover:text-black transition-colors">
+                {label}
+              </a>
+            ))}
+            <button onClick={openContactModal} style={{ fontFamily: 'var(--font-inter)', fontSize: '0.9rem', color: 'rgba(26,26,22,0.55)', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+              className="hover:text-black transition-colors">
+              Contact
+            </button>
+            <button
+              onClick={() => { if (isMobileDevice()) { window.location.href = 'tel:+13103612756'; } else { startWebCall(); } }}
+              style={{
+                fontFamily: 'var(--font-inter)', fontSize: '0.85rem', fontWeight: 600,
+                color: '#E4E4DE', background: '#1A1A16',
+                padding: '9px 22px', borderRadius: '100px',
+                transition: 'background 0.2s ease, transform 0.2s ease',
+                boxShadow: '0 4px 16px rgba(26,26,22,0.20)',
+                cursor: 'pointer', border: 'none',
+              }} className="hover:-translate-y-0.5 active:scale-95">
+              Try the Demo
+            </button>
+          </div>
+
+          <button className="md:hidden" onClick={() => setOpen(!open)} style={{ color: 'rgba(26,26,22,0.55)', background: 'none', border: 'none', cursor: 'pointer' }}>
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden"
-          onClick={() => setOpen(!open)}
-          style={{ color: '#2d2d2d', background: 'none', border: 'none', cursor: 'pointer' }}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div
-          className="md:hidden px-6 py-8 flex flex-col gap-5"
-          style={{ background: '#fff', borderTop: '1px solid rgba(181,198,224,0.4)' }}
-        >
-          {[['Home', '/'], ['Services', '/services'], ['Blog', '/blog'], ['Contact', '/contact']].map(([label, href]) => (
-            <Link
-              key={label}
-              href={href}
-              className="transition-colors hover:text-[#103783]"
-              style={{ color: 'rgba(45,45,45,0.6)', fontFamily: 'var(--font-space-grotesk)', fontSize: '0.95rem', fontWeight: 500 }}
-              onClick={() => setOpen(false)}
-            >
+        <div className="md:hidden px-6 py-6 flex flex-col gap-5" style={{ background: '#E4E4DE', borderTop: '1px solid rgba(26,26,22,0.08)' }}>
+          {[['Services', '/#services'], ['How It Works', '/#how-it-works'], ['Blog', '/blog']].map(([label, href]) => (
+            <a key={label} href={href} style={{ color: 'rgba(26,26,22,0.55)', fontFamily: 'var(--font-inter)', fontSize: '0.95rem' }}
+              onClick={() => setOpen(false)} className="hover:text-black transition-colors">
               {label}
-            </Link>
+            </a>
           ))}
-          <Link href="/contact" className="btn-primary justify-center text-center" onClick={() => setOpen(false)}>
-            Book Free Demo
-          </Link>
+          <button onClick={() => { setOpen(false); openContactModal(); }} style={{ color: 'rgba(26,26,22,0.55)', fontFamily: 'var(--font-inter)', fontSize: '0.95rem', background: 'none', border: 'none', cursor: 'pointer', padding: 0, textAlign: 'left' }}
+            className="hover:text-black transition-colors">
+            Contact
+          </button>
+          <button
+            onClick={() => { setOpen(false); if (isMobileDevice()) { window.location.href = 'tel:+13103612756'; } else { startWebCall(); } }}
+            style={{
+              background: '#1A1A16', color: '#E4E4DE', fontFamily: 'var(--font-inter)', fontWeight: 600,
+              fontSize: '0.9rem', padding: '12px 24px', borderRadius: '100px', textAlign: 'center', cursor: 'pointer', border: 'none',
+            }}>
+            Try the Demo
+          </button>
         </div>
       )}
     </nav>

@@ -1,0 +1,26 @@
+{
+  "businessName": "",
+  "tagline": "",
+  "phone": "",
+  "location": "",
+  "industry": "",
+  "accentColor": "#2C5F8A",
+  "heroHeadline": "",
+  "heroSubtext": "",
+  "services": [
+    { "title": "", "description": "" },
+    { "title": "", "description": "" },
+    { "title": "", "description": "" },
+    { "title": "", "description": "" }
+  ],
+  "stats": [
+    { "value": "", "label": "" },
+    { "value": "", "label": "" },
+    { "value": "", "label": "" }
+  ],
+  "testimonial": {
+    "quote": "",
+    "author": ""
+  },
+  "poweredBy": true
+}

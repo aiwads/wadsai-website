@@ -1,34 +1,46 @@
-import type { Metadata } from "next";
-import { Syne, Space_Grotesk } from "next/font/google";
-import "./globals.css";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
+import localFont from 'next/font/local';
+import './globals.css';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import FloatingEndCall from '@/components/FloatingEndCall';
+import ContactModal from '@/components/ContactModal';
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["400", "500", "600", "700", "800"],
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  weight: ['400', '500', '600', '700', '800'],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  weight: ["300", "400", "500", "600", "700"],
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['400', '500', '600'],
+});
+
+const undefinedMedium = localFont({
+  src: [
+    { path: '../public/fonts/undefined-medium.woff2', format: 'woff2' },
+    { path: '../public/fonts/undefined-medium.woff', format: 'woff' },
+  ],
+  variable: '--font-undefined',
 });
 
 export const metadata: Metadata = {
-  title: "Wads AI — AI Voice Agents for Real Estate Agents",
-  description: "Never miss another lead. Wads AI builds custom AI voice agents that answer every call 24/7, qualify buyers and sellers, and send you instant lead summaries.",
-  keywords: "AI receptionist real estate, AI voice agent realtor, missed call solution real estate, AI phone answering real estate",
+  title: 'Wads AI — AI Voice Agents for Small Business',
+  description: 'Your AI agent answers every call, sounds human, books appointments, and captures leads 24/7. Never miss a call again.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${syne.variable} ${spaceGrotesk.variable}`}>
+      <body className={`${jakarta.variable} ${inter.variable} ${undefinedMedium.variable}`}>
         <Nav />
-        <main className="pt-16">{children}</main>
+        <main>{children}</main>
         <Footer />
+        <FloatingEndCall />
+        <ContactModal />
       </body>
     </html>
   );

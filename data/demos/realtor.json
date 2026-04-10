@@ -1,0 +1,27 @@
+{
+  "businessName": "Pacific Coast Realty",
+  "tagline": "Your Trusted Real Estate Expert in Santa Monica",
+  "phone": "(310) 555-0123",
+  "location": "Santa Monica, CA",
+  "industry": "realtor",
+  "accentColor": "#2C5F8A",
+  "heroImage": "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&auto=format&fit=crop&q=80",
+  "heroHeadline": "Discover the perfect place to call home",
+  "heroSubtext": "Local expertise, personal service, results you can count on. Call us today — we answer every call.",
+  "services": [
+    { "title": "Home Buying", "description": "Expert guidance from search to close." },
+    { "title": "Home Selling", "description": "Proven strategy to sell fast and for top dollar." },
+    { "title": "Property Valuation", "description": "Free market analysis for your home." },
+    { "title": "Investment Properties", "description": "Find cash-flowing properties in your market." }
+  ],
+  "stats": [
+    { "value": "200+", "label": "Homes Sold" },
+    { "value": "98%", "label": "Client Satisfaction" },
+    { "value": "14", "label": "Days Avg. on Market" }
+  ],
+  "testimonial": {
+    "quote": "They answered my call on the first ring and had my home sold in 10 days.",
+    "author": "Sarah M., Santa Monica"
+  },
+  "poweredBy": true
+}
