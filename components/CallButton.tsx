@@ -30,14 +30,17 @@ export function isMobileDevice() {
 export async function startWebCall() {
   if (globalState !== 'idle') return;
   setGlobal('connecting');
+
+  // Instantiate synchronously before any await so Safari's user gesture
+  // chain is intact when the SDK creates its AudioContext.
+  retellClient = new RetellWebClient();
+  retellClient.on('call_ended', () => { retellClient = null; setGlobal('idle'); });
+  retellClient.on('error', () => { retellClient = null; setGlobal('idle'); });
+
   try {
     const res = await fetch('/api/retell', { method: 'POST' });
     const { accessToken, error } = await res.json();
     if (!accessToken) throw new Error(error ?? 'No access token');
-
-    retellClient = new RetellWebClient();
-    retellClient.on('call_ended', () => { retellClient = null; setGlobal('idle'); });
-    retellClient.on('error', () => { retellClient = null; setGlobal('idle'); });
     await retellClient.startCall({ accessToken });
     setGlobal('active');
   } catch {
