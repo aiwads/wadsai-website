@@ -145,9 +145,8 @@ export default function EmployeeSection() {
             </div>
 
             {/* Phone number */}
-            <button
-              onMouseEnter={prefetchToken}
-              onClick={startWebCall}
+            <a
+              href="tel:+13103612756"
               style={{
                 position: 'relative', zIndex: 1,
                 fontFamily: 'var(--font-jakarta)', fontWeight: 800,
@@ -158,7 +157,7 @@ export default function EmployeeSection() {
               }}
             >
               310-361-2756
-            </button>
+            </a>
           </div>
         </motion.div>
 
