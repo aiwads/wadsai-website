@@ -59,7 +59,11 @@ export default function Nav() {
 
       {open && (
         <div className="md:hidden px-6 pb-6 pt-10 flex flex-col gap-5" style={{ background: '#E4E4DE', borderTop: '1px solid rgba(26,26,22,0.08)' }}>
-          {[['Services', '/#services'], ['How It Works', '/#how-it-works'], ['Blog', '/blog']].map(([label, href]) => (
+          <a href="/#services" style={{ color: 'rgba(26,26,22,0.80)', fontFamily: 'var(--font-inter)', fontSize: '0.95rem', textAlign: 'center' }}
+            onClick={() => setOpen(false)} className="mt-4 hover:text-black transition-colors">
+            Services
+          </a>
+          {[['How It Works', '/#how-it-works'], ['Blog', '/blog']].map(([label, href]) => (
             <a key={label} href={href} style={{ color: 'rgba(26,26,22,0.80)', fontFamily: 'var(--font-inter)', fontSize: '0.95rem', textAlign: 'center' }}
               onClick={() => setOpen(false)} className="hover:text-black transition-colors">
               {label}
