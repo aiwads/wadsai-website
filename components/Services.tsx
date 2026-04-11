@@ -342,16 +342,17 @@ export default function Services() {
                     <PhoneOff size={31} color="#fff" />
                   </div>
                   {/* Accept */}
-                  <a
-                    href="tel:+13103612756"
+                  <button
+                    onMouseEnter={prefetchToken}
+                    onClick={() => startWebCall()}
                     style={{
                       width: 70, height: 70, borderRadius: '50%', background: '#34C759',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                      textDecoration: 'none', animation: 'glowPulse 2s ease-in-out infinite',
+                      border: 'none', cursor: 'pointer', animation: 'glowPulse 2s ease-in-out infinite',
                     }}
                   >
                     <img src="/wadsai-phone-icon.png" alt="" style={{ width: 38, height: 38, filter: 'brightness(0) invert(1)' }} />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
