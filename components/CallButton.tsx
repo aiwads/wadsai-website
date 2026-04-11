@@ -120,31 +120,44 @@ export default function CallButton({
     boxShadow: '0 4px 20px rgba(220,38,38,0.35)',
   };
 
-  const style: React.CSSProperties = {
+  const baseStyle: React.CSSProperties = {
     ...idleStyle,
     ...(callState !== 'idle' ? activeStyle : {}),
     cursor: callState === 'connecting' ? 'default' : 'pointer',
     transition: 'background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease',
   };
 
-  return (
-    <a
-      href={MOBILE_TEL}
-      onMouseEnter={prefetchToken}
-      onFocus={prefetchToken}
-      onClick={(e) => {
-        if (callState === 'active') { e.preventDefault(); stopWebCall(); return; }
-        if (callState === 'connecting') { e.preventDefault(); return; }
-        if (isMobileDevice()) return; // let <a href="tel:"> fire natively — no dialog
-        e.preventDefault();
-        startWebCall();
-      }}
-      style={{ ...style, textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
-      className={className}
-    >
+  const inner = (
+    <>
       {callState === 'idle' && <Phone size={phoneSize} />}
       {' '}{label}
       {callState === 'idle' && showArrow && <span style={{ marginLeft: 4 }}>→</span>}
-    </a>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile: pure native tel: link — zero JS in the tap path */}
+      <a
+        href={MOBILE_TEL}
+        className={`md:hidden ${className ?? ''}`}
+        style={{ ...baseStyle, textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+      >
+        {inner}
+      </a>
+      {/* Desktop: web call button */}
+      <button
+        onMouseEnter={prefetchToken}
+        onClick={() => {
+          if (callState === 'active') { stopWebCall(); return; }
+          if (callState === 'connecting') return;
+          startWebCall();
+        }}
+        className={`hidden md:inline-flex ${className ?? ''}`}
+        style={{ ...baseStyle, border: 'none', alignItems: 'center' }}
+      >
+        {inner}
+      </button>
+    </>
   );
 }

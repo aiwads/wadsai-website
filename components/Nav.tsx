@@ -34,21 +34,20 @@ export default function Nav() {
               className="hover:text-black transition-colors">
               Contact
             </button>
-            <a
-              href="tel:+13103612756"
+            {/* Desktop only — web call */}
+            <button
               onMouseEnter={prefetchToken}
-              onFocus={prefetchToken}
-              onClick={(e) => { if (isMobileDevice()) return; e.preventDefault(); startWebCall(); }}
+              onClick={() => startWebCall()}
               style={{
                 fontFamily: 'var(--font-inter)', fontSize: '0.85rem', fontWeight: 600,
                 color: '#E4E4DE', background: '#1A1A16',
                 padding: '9px 22px', borderRadius: '100px',
                 transition: 'background 0.2s ease, transform 0.2s ease',
                 boxShadow: '0 4px 16px rgba(26,26,22,0.20)',
-                cursor: 'pointer', textDecoration: 'none', display: 'inline-block',
+                cursor: 'pointer', border: 'none',
               }} className="hover:-translate-y-0.5 active:scale-95">
               Try the Demo
-            </a>
+            </button>
           </div>
 
           <button className="md:hidden" onClick={() => setOpen(!open)} style={{ color: 'rgba(26,26,22,0.55)', background: 'none', border: 'none', cursor: 'pointer' }}>
@@ -70,9 +69,10 @@ export default function Nav() {
             className="hover:text-black transition-colors">
             Contact
           </button>
+          {/* Mobile menu — pure tel: link, no JS */}
           <a
             href="tel:+13103612756"
-            onClick={(e) => { setOpen(false); if (isMobileDevice()) return; e.preventDefault(); startWebCall(); }}
+            onClick={() => setOpen(false)}
             style={{
               background: '#1A1A16', color: '#E4E4DE', fontFamily: 'var(--font-inter)', fontWeight: 600,
               fontSize: '0.9rem', padding: '12px 24px', borderRadius: '100px', textAlign: 'center',

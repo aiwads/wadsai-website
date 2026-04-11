@@ -147,8 +147,6 @@ export default function EmployeeSection() {
             {/* Phone number */}
             <a
               href="tel:+13103612756"
-              onMouseEnter={prefetchToken}
-              onClick={(e) => { if (!isMobileDevice()) { e.preventDefault(); startWebCall(); } }}
               style={{
                 position: 'relative', zIndex: 1,
                 fontFamily: 'var(--font-jakarta)', fontWeight: 800,

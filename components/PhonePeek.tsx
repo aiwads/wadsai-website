@@ -115,8 +115,6 @@ export default function PhonePeek() {
                   {/* Accept */}
                   <a
                     href="tel:+13103612756"
-                    onMouseEnter={prefetchToken}
-                    onClick={(e) => { if (!isMobileDevice()) { e.preventDefault(); startWebCall(); } }}
                     style={{
                       width: 70, height: 70, borderRadius: '50%', background: '#34C759',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
