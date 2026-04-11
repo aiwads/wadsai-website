@@ -144,9 +144,10 @@ export default function EmployeeSection() {
               }} />
             </div>
 
-            {/* Phone number */}
+            {/* Phone number — mobile: pure tel: link (no JS), desktop: web call */}
             <a
               href="tel:+13103612756"
+              className="md:hidden"
               style={{
                 position: 'relative', zIndex: 1,
                 fontFamily: 'var(--font-jakarta)', fontWeight: 800,
@@ -157,6 +158,21 @@ export default function EmployeeSection() {
             >
               310-361-2756
             </a>
+            <button
+              onMouseEnter={prefetchToken}
+              onClick={startWebCall}
+              className="hidden md:block"
+              style={{
+                position: 'relative', zIndex: 1,
+                fontFamily: 'var(--font-jakarta)', fontWeight: 800,
+                fontSize: 'clamp(2.8rem, 6vw, 5rem)', color: '#ffffff',
+                lineHeight: 1, letterSpacing: '-0.02em',
+                textDecoration: 'none',
+                background: 'none', border: 'none', padding: 0, cursor: 'pointer',
+              }}
+            >
+              310-361-2756
+            </button>
           </div>
         </motion.div>
 
