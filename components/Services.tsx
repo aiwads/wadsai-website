@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { PhoneIncoming, PhoneOutgoing, Headphones, Clock, Zap, Star, PhoneOff } from 'lucide-react';
-import { startWebCall, stopWebCall, isMobileDevice } from './CallButton';
+import { startWebCall, stopWebCall, isMobileDevice, prefetchToken } from './CallButton';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -344,6 +344,7 @@ export default function Services() {
                   {/* Accept */}
                   <a
                     href="tel:+13103612756"
+                    onMouseEnter={prefetchToken}
                     onClick={(e) => { if (!isMobileDevice()) { e.preventDefault(); startWebCall(); } }}
                     style={{
                       width: 70, height: 70, borderRadius: '50%', background: '#34C759',

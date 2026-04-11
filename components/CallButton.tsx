@@ -22,21 +22,53 @@ export function subscribe(fn: (s: CallState) => void): () => void {
   return () => listeners.delete(fn);
 }
 
+/* ── Mobile detection ── */
 export function isMobileDevice() {
   if (typeof window === 'undefined') return false;
-  return window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+  // ontouchstart is the most reliable cross-browser touch signal
+  if ('ontouchstart' in window) return true;
+  if (window.matchMedia('(pointer: coarse)').matches) return true;
+  if (window.innerWidth < 768) return true;
+  return false;
 }
 
+/* ── Token pre-fetch cache ── */
+// Pre-fetching the token lets startCall() be invoked synchronously within
+// the click gesture, satisfying Safari's user-gesture requirement.
+let cachedToken: string | null = null;
+let prefetchPromise: Promise<void> | null = null;
+
+export function prefetchToken(): void {
+  if (cachedToken || prefetchPromise) return;
+  prefetchPromise = fetch('/api/retell', { method: 'POST' })
+    .then(r => r.json())
+    .then(({ accessToken }) => { if (accessToken) cachedToken = accessToken; })
+    .catch(() => { /* ignore — will fall back to inline fetch */ })
+    .finally(() => { prefetchPromise = null; });
+}
+
+/* ── Call lifecycle ── */
 export async function startWebCall() {
   if (globalState !== 'idle') return;
   setGlobal('connecting');
 
-  // Instantiate synchronously before any await so Safari's user gesture
-  // chain is intact when the SDK creates its AudioContext.
   retellClient = new RetellWebClient();
   retellClient.on('call_ended', () => { retellClient = null; setGlobal('idle'); });
-  retellClient.on('error', () => { retellClient = null; setGlobal('idle'); });
+  retellClient.on('error',      () => { retellClient = null; setGlobal('idle'); });
 
+  const token = cachedToken;
+  cachedToken = null;
+
+  if (token) {
+    // Token already available — startCall() invoked synchronously within
+    // the user gesture, no await before it. Safari compliant.
+    retellClient.startCall({ accessToken: token })
+      .then(() => setGlobal('active'))
+      .catch(() => { retellClient = null; setGlobal('idle'); });
+    return;
+  }
+
+  // Fallback: fetch token inline (may hit Safari gesture-chain restriction)
   try {
     const res = await fetch('/api/retell', { method: 'POST' });
     const { accessToken, error } = await res.json();
@@ -104,6 +136,8 @@ export default function CallButton({
 
   return (
     <button
+      onMouseEnter={prefetchToken}
+      onFocus={prefetchToken}
       onClick={handleClick}
       style={{ ...style, border: 'none' }}
       className={className}

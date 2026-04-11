@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { PhoneOff } from 'lucide-react';
-import { startWebCall, isMobileDevice } from './CallButton';
+import { startWebCall, isMobileDevice, prefetchToken } from './CallButton';
 
 export default function AgentTypes() {
   return (
@@ -101,6 +101,7 @@ export default function AgentTypes() {
                     {/* Accept */}
                     <a
                       href="tel:+13103612756"
+                      onMouseEnter={prefetchToken}
                       onClick={(e) => { if (!isMobileDevice()) { e.preventDefault(); startWebCall(); } }}
                       style={{
                         width: 70, height: 70, borderRadius: '50%', background: '#34C759',

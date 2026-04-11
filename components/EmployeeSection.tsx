@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import CallButton, { startWebCall, isMobileDevice } from './CallButton';
+import CallButton, { startWebCall, isMobileDevice, prefetchToken } from './CallButton';
 
 const NUM_BARS = 72;
 const bars = Array.from({ length: NUM_BARS }, (_, i) => {
@@ -147,6 +147,7 @@ export default function EmployeeSection() {
             {/* Phone number */}
             <a
               href="tel:+13103612756"
+              onMouseEnter={prefetchToken}
               onClick={(e) => { if (!isMobileDevice()) { e.preventDefault(); startWebCall(); } }}
               style={{
                 position: 'relative', zIndex: 1,

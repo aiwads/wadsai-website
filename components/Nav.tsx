@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { startWebCall, isMobileDevice } from './CallButton';
+import { startWebCall, isMobileDevice, prefetchToken } from './CallButton';
 import { openContactModal } from './ContactModal';
 
 export default function Nav() {
@@ -35,6 +35,8 @@ export default function Nav() {
               Contact
             </button>
             <button
+              onMouseEnter={prefetchToken}
+              onFocus={prefetchToken}
               onClick={() => { if (isMobileDevice()) { window.location.href = 'tel:+13103612756'; } else { startWebCall(); } }}
               style={{
                 fontFamily: 'var(--font-inter)', fontSize: '0.85rem', fontWeight: 600,
