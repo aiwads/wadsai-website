@@ -153,7 +153,7 @@ export default function EmployeeSection() {
                 fontFamily: 'var(--font-jakarta)', fontWeight: 800,
                 fontSize: 'clamp(2.8rem, 6vw, 5rem)', color: '#ffffff',
                 lineHeight: 1, letterSpacing: '-0.02em',
-                textDecoration: 'none', display: 'block',
+                textDecoration: 'none',
               }}
             >
               310-361-2756
