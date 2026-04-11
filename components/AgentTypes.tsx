@@ -1,9 +1,13 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PhoneOff } from 'lucide-react';
-import { startWebCall, isMobileDevice, prefetchToken } from './CallButton';
+import { startWebCall, stopWebCall, prefetchToken, subscribe } from './CallButton';
 
 export default function AgentTypes() {
+  const [callState, setCallState] = useState<'idle' | 'connecting' | 'active'>('idle');
+  useEffect(() => subscribe(setCallState), []);
+
   return (
     <section style={{ background: '#DEDED8', paddingTop: '60px', paddingBottom: '0' }}>
       <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '0 24px' }}>
@@ -90,23 +94,32 @@ export default function AgentTypes() {
                       <div style={{ fontFamily: 'var(--font-inter)', fontSize: '1.23rem', color: 'rgba(255,255,255,0.38)', fontWeight: 500, lineHeight: 1.2, letterSpacing: '0.01em' }}>Wads AI</div>
                       <div style={{ fontFamily: 'var(--font-jakarta)', fontSize: '2.05rem', fontWeight: 700, color: '#ffffff', lineHeight: 1.25, marginTop: 1 }}>Talk to AI</div>
                     </div>
-                    {/* Decline */}
-                    <div style={{
-                      width: 70, height: 70, borderRadius: '50%', background: '#FF3B30',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                      boxShadow: '0 2px 8px rgba(255,59,48,0.4)',
-                    }}>
-                      <PhoneOff size={31} color="#fff" />
-                    </div>
-                    {/* Accept */}
+                    {/* Decline / End call */}
                     <button
-                      onMouseEnter={prefetchToken}
-                      onClick={startWebCall}
+                      onClick={callState !== 'idle' ? stopWebCall : undefined}
                       style={{
-                        width: 70, height: 70, borderRadius: '50%', background: '#34C759',
+                        width: 70, height: 70, borderRadius: '50%', background: '#FF3B30',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                        border: 'none', cursor: 'pointer', padding: 0,
-                        animation: 'glowPulse 2s ease-in-out infinite',
+                        boxShadow: '0 2px 8px rgba(255,59,48,0.4)',
+                        border: 'none', padding: 0,
+                        cursor: callState !== 'idle' ? 'pointer' : 'default',
+                        opacity: callState !== 'idle' ? 1 : 0.5,
+                        transition: 'opacity 0.2s ease',
+                      }}
+                    >
+                      <PhoneOff size={31} color="#fff" />
+                    </button>
+                    {/* Accept / Call active */}
+                    <button
+                      onMouseEnter={callState === 'idle' ? prefetchToken : undefined}
+                      onClick={callState === 'idle' ? startWebCall : undefined}
+                      style={{
+                        width: 70, height: 70, borderRadius: '50%',
+                        background: callState === 'active' ? '#22a84a' : '#34C759',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                        border: 'none', cursor: callState === 'idle' ? 'pointer' : 'default', padding: 0,
+                        animation: callState === 'idle' ? 'glowPulse 2s ease-in-out infinite' : 'none',
+                        transition: 'background 0.2s ease',
                       }}
                     >
                       <img src="/wadsai-phone-icon.png" alt="" style={{ width: 38, height: 38, filter: 'brightness(0) invert(1)' }} />
