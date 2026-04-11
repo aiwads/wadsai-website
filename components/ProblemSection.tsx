@@ -201,17 +201,17 @@ export default function ProblemSection() {
                       <PhoneOff size={31} color="#fff" />
                     </div>
                     {/* Accept */}
-                    <button
-                      onClick={() => { if (isMobileDevice()) { window.location.href = 'tel:+13103612756'; } else { startWebCall(); } }}
+                    <a
+                      href="tel:+13103612756"
+                      onClick={(e) => { if (!isMobileDevice()) { e.preventDefault(); startWebCall(); } }}
                       style={{
                         width: 70, height: 70, borderRadius: '50%', background: '#34C759',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                        animation: 'glowPulse 2s ease-in-out infinite',
-                        cursor: 'pointer', border: 'none', padding: 0,
+                        textDecoration: 'none', animation: 'glowPulse 2s ease-in-out infinite',
                       }}
                     >
                       <img src="/wadsai-phone-icon.png" alt="" style={{ width: 38, height: 38, filter: 'brightness(0) invert(1)' }} />
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

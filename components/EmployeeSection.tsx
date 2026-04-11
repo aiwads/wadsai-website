@@ -145,19 +145,19 @@ export default function EmployeeSection() {
             </div>
 
             {/* Phone number */}
-            <button
-              onClick={() => { if (isMobileDevice()) { window.location.href = 'tel:+13103612756'; } else { startWebCall(); } }}
+            <a
+              href="tel:+13103612756"
+              onClick={(e) => { if (!isMobileDevice()) { e.preventDefault(); startWebCall(); } }}
               style={{
                 position: 'relative', zIndex: 1,
                 fontFamily: 'var(--font-jakarta)', fontWeight: 800,
                 fontSize: 'clamp(2.8rem, 6vw, 5rem)', color: '#ffffff',
                 lineHeight: 1, letterSpacing: '-0.02em',
-                background: 'none', border: 'none', cursor: 'pointer',
-                padding: 0, display: 'block',
+                textDecoration: 'none', display: 'block',
               }}
             >
               310-361-2756
-            </button>
+            </a>
           </div>
         </motion.div>
 
