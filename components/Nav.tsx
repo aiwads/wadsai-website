@@ -69,17 +69,17 @@ export default function Nav() {
             className="hover:text-black transition-colors">
             Contact
           </button>
-          {/* Mobile menu — pure tel: link, no JS */}
-          <a
-            href="tel:+13103612756"
-            onClick={() => setOpen(false)}
+          {/* Mobile menu — Retell web call */}
+          <button
+            onMouseEnter={prefetchToken}
+            onClick={() => { setOpen(false); startWebCall(); }}
             style={{
               background: '#1A1A16', color: '#E4E4DE', fontFamily: 'var(--font-inter)', fontWeight: 600,
               fontSize: '0.9rem', padding: '12px 24px', borderRadius: '100px', textAlign: 'center',
-              cursor: 'pointer', textDecoration: 'none', display: 'block',
+              cursor: 'pointer', border: 'none', display: 'block', width: '100%',
             }}>
             Try the Demo
-          </a>
+          </button>
         </div>
       )}
     </nav>
