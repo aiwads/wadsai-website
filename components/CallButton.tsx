@@ -127,24 +127,24 @@ export default function CallButton({
     transition: 'background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease',
   };
 
-  function handleClick() {
-    if (callState === 'active') { stopWebCall(); return; }
-    if (callState === 'connecting') return;
-    if (isMobileDevice()) { window.location.href = MOBILE_TEL; return; }
-    startWebCall();
-  }
-
   return (
-    <button
+    <a
+      href={MOBILE_TEL}
       onMouseEnter={prefetchToken}
       onFocus={prefetchToken}
-      onClick={handleClick}
-      style={{ ...style, border: 'none' }}
+      onClick={(e) => {
+        if (callState === 'active') { e.preventDefault(); stopWebCall(); return; }
+        if (callState === 'connecting') { e.preventDefault(); return; }
+        if (isMobileDevice()) return; // let <a href="tel:"> fire natively — no dialog
+        e.preventDefault();
+        startWebCall();
+      }}
+      style={{ ...style, textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
       className={className}
     >
       {callState === 'idle' && <Phone size={phoneSize} />}
       {' '}{label}
       {callState === 'idle' && showArrow && <span style={{ marginLeft: 4 }}>→</span>}
-    </button>
+    </a>
   );
 }

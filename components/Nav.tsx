@@ -34,20 +34,21 @@ export default function Nav() {
               className="hover:text-black transition-colors">
               Contact
             </button>
-            <button
+            <a
+              href="tel:+13103612756"
               onMouseEnter={prefetchToken}
               onFocus={prefetchToken}
-              onClick={() => { if (isMobileDevice()) { window.location.href = 'tel:+13103612756'; } else { startWebCall(); } }}
+              onClick={(e) => { if (isMobileDevice()) return; e.preventDefault(); startWebCall(); }}
               style={{
                 fontFamily: 'var(--font-inter)', fontSize: '0.85rem', fontWeight: 600,
                 color: '#E4E4DE', background: '#1A1A16',
                 padding: '9px 22px', borderRadius: '100px',
                 transition: 'background 0.2s ease, transform 0.2s ease',
                 boxShadow: '0 4px 16px rgba(26,26,22,0.20)',
-                cursor: 'pointer', border: 'none',
+                cursor: 'pointer', textDecoration: 'none', display: 'inline-block',
               }} className="hover:-translate-y-0.5 active:scale-95">
               Try the Demo
-            </button>
+            </a>
           </div>
 
           <button className="md:hidden" onClick={() => setOpen(!open)} style={{ color: 'rgba(26,26,22,0.55)', background: 'none', border: 'none', cursor: 'pointer' }}>
@@ -69,14 +70,16 @@ export default function Nav() {
             className="hover:text-black transition-colors">
             Contact
           </button>
-          <button
-            onClick={() => { setOpen(false); if (isMobileDevice()) { window.location.href = 'tel:+13103612756'; } else { startWebCall(); } }}
+          <a
+            href="tel:+13103612756"
+            onClick={(e) => { setOpen(false); if (isMobileDevice()) return; e.preventDefault(); startWebCall(); }}
             style={{
               background: '#1A1A16', color: '#E4E4DE', fontFamily: 'var(--font-inter)', fontWeight: 600,
-              fontSize: '0.9rem', padding: '12px 24px', borderRadius: '100px', textAlign: 'center', cursor: 'pointer', border: 'none',
+              fontSize: '0.9rem', padding: '12px 24px', borderRadius: '100px', textAlign: 'center',
+              cursor: 'pointer', textDecoration: 'none', display: 'block',
             }}>
             Try the Demo
-          </button>
+          </a>
         </div>
       )}
     </nav>
