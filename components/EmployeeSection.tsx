@@ -146,7 +146,7 @@ export default function EmployeeSection() {
 
             {/* Phone number */}
             <a
-              href="tel:+13103612756"
+              href="tel:3103612756"
               style={{
                 position: 'relative', zIndex: 1,
                 fontFamily: 'var(--font-jakarta)', fontWeight: 800,
