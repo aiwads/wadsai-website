@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import CallButton from './CallButton';
+import CallButton, { startWebCall, isMobileDevice } from './CallButton';
 
 const NUM_BARS = 72;
 const bars = Array.from({ length: NUM_BARS }, (_, i) => {
@@ -145,15 +145,19 @@ export default function EmployeeSection() {
             </div>
 
             {/* Phone number */}
-            <a href="tel:3103612756" style={{
-              position: 'relative', zIndex: 1,
-              fontFamily: 'var(--font-jakarta)', fontWeight: 800,
-              fontSize: 'clamp(2.8rem, 6vw, 5rem)', color: '#ffffff',
-              lineHeight: 1, letterSpacing: '-0.02em',
-              textDecoration: 'none', display: 'block',
-            }}>
+            <button
+              onClick={() => { if (isMobileDevice()) { window.location.href = 'tel:+13103612756'; } else { startWebCall(); } }}
+              style={{
+                position: 'relative', zIndex: 1,
+                fontFamily: 'var(--font-jakarta)', fontWeight: 800,
+                fontSize: 'clamp(2.8rem, 6vw, 5rem)', color: '#ffffff',
+                lineHeight: 1, letterSpacing: '-0.02em',
+                background: 'none', border: 'none', cursor: 'pointer',
+                padding: 0, display: 'block',
+              }}
+            >
               310-361-2756
-            </a>
+            </button>
           </div>
         </motion.div>
 
